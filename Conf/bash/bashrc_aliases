@@ -1,0 +1,18 @@
+# My aliases
+alias python='/usr/bin/python3'
+alias lvim='/usr/bin/vim -c "normal '\''0"'
+alias gs='/usr/bin/git status'
+alias ge='/usr/bin/git commit -a --allow-empty-message -m ""'
+alias arduino-ide='$HOME/Downloads/arduino-1.8.13/arduino'
+alias clip='xclip -sel clip'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# My functions
+ffind() { /usr/bin/find . -iname "*$1*"; }
+rg() { /usr/bin/rgrep -nI --color=always --exclude=\*.md --exclude=tags --exclude=*.txt "$@"; }
+# If squashing with only 2 commits in repo: git rebase -i --root
+gr() { /usr/bin/git rebase -i HEAD~$1; }
+
