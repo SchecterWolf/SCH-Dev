@@ -14,7 +14,7 @@ EOF
 exit 1
 }
 
-$SUDO='/usr/bin/sudo'
+SUDO='/usr/bin/sudo'
 
 POSITIONAL_PARAMS=""
 while (( "$#" )); do
@@ -38,6 +38,7 @@ ARY_APT_BINS=(
     "git"
     "git-gui"
     "gitk"
+    "gdb"
     "htop"
     "nmap"
     "screen"

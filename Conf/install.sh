@@ -29,7 +29,10 @@ done
 eval set -- "$POSITIONAL_PARAMS"
 
 # Run install on each conf dir
-mapfile -t ARY_CONFS < <(/usr/bin/find $(dirname $0) -maxdepth 1 -type d)
+CUR_DIR=$(dirname $0)
+mapfile -t ARY_CONFS < <(/usr/bin/find $CUR_DIR -maxdepth 1 -type d)
 for _confs in ${ARY_CONFS[@]}; do
-    $_confs/install.sh
+    if [ "$_confs" != "$CUR_DIR" ]; then
+        $_confs/install.sh
+    fi
 done
