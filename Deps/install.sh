@@ -46,6 +46,7 @@ ARY_APT_BINS=(
     "valgrind"
     "vim"
     "wireshark"
+    "openjdk-17-jdk-headless"
 )
 ARY_SNAP_BINS=(
     "drawio"
