@@ -36,3 +36,5 @@ set -x
 /usr/bin/cp $BASH_CONF_DIR/bashrc_aliases $HOME/.bashrc_aliases
 { set +x; } 2>/dev/null
 
+echo "Make sure to source after install!"
+
