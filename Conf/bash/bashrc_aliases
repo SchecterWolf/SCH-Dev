@@ -3,11 +3,9 @@ alias python='/usr/bin/python3'
 alias lvim='/usr/bin/vim -c "normal '\''0"'
 alias gs='/usr/bin/git status'
 alias ge='/usr/bin/git commit -a --allow-empty-message -m ""'
+alias gg='/usr/bin/git gui'
 alias arduino-ide='$HOME/Downloads/arduino-1.8.13/arduino'
 alias clip='xclip -sel clip'
-alias gpo="/usr/bin/git fetch origin && /usr/bin/git pull origin $(/usr/bin/git branch --show-current)"
-alias guo="/usr/bin/git push origin $(/usr/bin/git branch --show-current)"
-alias gl="/usr/bin/git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | cut -c-$(($(tput cols) + 20))"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -16,6 +14,8 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # My functions
 ffind() { /usr/bin/find . -iname "*$1*"; }
 rg() { /usr/bin/rgrep -nI --color=always --exclude=\*.md --exclude=tags --exclude=*.txt "$@"; }
-# If squashing with only 2 commits in repo: git rebase -i --root
-gr() { /usr/bin/git rebase -i HEAD~$1; }
+gr() { /usr/bin/git rebase -i HEAD~$1; } # If squashing with only 2 commits in repo: git rebase -i --root
+gpo() { /usr/bin/git fetch origin && /usr/bin/git pull origin $(/usr/bin/git branch --show-current); }
+guo() { /usr/bin/git push origin $(/usr/bin/git branch --show-current); }
+gl() { /usr/bin/git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | cut -c-$(($(tput cols) + 20)); }
 
