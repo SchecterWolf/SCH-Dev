@@ -34,6 +34,7 @@ eval set -- "$POSITIONAL_PARAMS"
 ARY_APT_BINS=(
     "ansible"
     "build-essential"
+    "cppcheck"
     "docker"
     "git"
     "git-gui"
