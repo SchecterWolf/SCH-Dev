@@ -34,11 +34,10 @@ eval set -- "$POSITIONAL_PARAMS"
 /usr/bin/cp $VIM_CONF_DIR/vimrc $HOME/.vimrc
 
 # Install vundle
-if [ ! -d $HOME/.vim/bundle/Vundle.vim ]; then
-    /usr/bin/mkdir -p $HOME/vim/bundle
-    git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+if [ ! -d $HOME/.vim/autoload/plug.vim ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
 # VIM vundle to install plugins
-/usr/bin/vim +PluginInstall +qall
+/usr/bin/vim +PlugInstall
 
