@@ -30,12 +30,14 @@ eval set -- "$POSITIONAL_PARAMS"
 
 # Install terminator config
 if [ ! -d "$HOME/.config/terminator" ]; then
+    echo "Installing terminator config"
     /usr/bin/mkdir -p "$HOME/.config/terminator"
     /usr/bin/ln "$(dirname $0)/terminator/config" "$HOME/.config/terminator/config"
 fi
 
 # Install git config
 if [ ! -f "$HOME/.gitconfig" ]; then
+    echo "Installing git config"
     /usr/bin/ln "$(dirname $0)/git/.gitconfig" "$HOME/.gitconfig"
 fi
 

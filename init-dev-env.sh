@@ -18,6 +18,7 @@ exit 1
 
 INST_CONF="Conf"
 INST_DEPS="Deps"
+# NOTE: Order matters
 ARY_INSTALL_DIRS=(
     $INST_DEPS
     $INST_CONF
