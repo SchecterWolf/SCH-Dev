@@ -31,6 +31,7 @@ done
 eval set -- "$POSITIONAL_PARAMS"
 
 # Install conf files to default system location
+echo "Installing bash source configs"
 set -x
 /usr/bin/cp $BASH_CONF_DIR/bashrc $HOME/.bashrc
 /usr/bin/cp $BASH_CONF_DIR/bashrc_aliases $HOME/.bashrc_aliases

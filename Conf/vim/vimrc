@@ -1,12 +1,17 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ███████╗ ██████╗██╗  ██╗███████╗ ██████╗████████╗███████╗██████╗ ███████╗
+" ██╔════╝██╔════╝██║  ██║██╔════╝██╔════╝╚══██╔══╝██╔════╝██╔══██╗██╔════╝
+" ███████╗██║     ███████║█████╗  ██║        ██║   █████╗  ██████╔╝███████╗
+" ╚════██║██║     ██╔══██║██╔══╝  ██║        ██║   ██╔══╝  ██╔══██╗╚════██║
+" ███████║╚██████╗██║  ██║███████╗╚██████╗   ██║   ███████╗██║  ██║███████║
+" ╚══════╝ ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝
 "
-"               ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
-"               ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
-"               ██║   ██║██║██╔████╔██║██████╔╝██║
-"               ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
-"                ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
-"                 ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-"
+"                 ██╗   ██╗██╗███╗   ███╗██████╗  ██████╗
+"                 ██║   ██║██║████╗ ████║██╔══██╗██╔════╝
+"                 ██║   ██║██║██╔████╔██║██████╔╝██║
+"                 ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
+"                  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
+"                   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin()
 " The default plugin directory will be as follows:
@@ -51,21 +56,23 @@ call plug#begin()
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 
 " My plugins
-Plug 'vim-scripts/DoxygenToolkit.vim'
-Plug 'vim-scripts/a.vim'
+"Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'aserebryakov/vim-todo-lists'
+Plug 'dense-analysis/ale'
 Plug 'elzr/vim-json'
-Plug 'ervandew/supertab'
 Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'dense-analysis/ale'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'vim-scripts/a.vim'
 
 call plug#end()
 " You can revert the settings after the call like so:
@@ -92,12 +99,20 @@ set hlsearch
 set number
 set clipboard=unnamedplus
 set scrolloff=10
+set signcolumn=yes
+set updatetime=300
 
 syntax on
 autocmd Filetype ino,c,cpp set cindent
 
 " Make vim treat arduino file types as cpp types
-"au BufRead,BufNewFile *.ino set filetype=cpp
+au BufRead,BufNewFile *.ino set filetype=cpp
+
+" Supertab config
+" let g:SuperTabNoCompleteAfter = ['\.', '>\?::', '->'] "Disable auto code complete, I have other plugins for that
+
+" ALE config
+let g:ale_completion_enabled = 0 "Disable auto code complete, I have other plugins for that
 
 " My commands
 :command W w
@@ -113,6 +128,19 @@ nnoremap <C-S-h> ^
 nnoremap <C-S-l> $
 
 " Use 'j' and 'k' for dropdown selection
-inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
-inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
+"inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
+"inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
+
+" COC QOL remaps
+" ------------------------------------------------------
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
 
