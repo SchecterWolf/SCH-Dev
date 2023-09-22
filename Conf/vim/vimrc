@@ -56,7 +56,6 @@ call plug#begin()
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 
 " My plugins
-"Plug 'ervandew/supertab'
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'aserebryakov/vim-todo-lists'
@@ -71,7 +70,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'vim-scripts/DoxygenToolkit.vim' " TODO Replace with snippets
 Plug 'vim-scripts/a.vim'
 
 call plug#end()
@@ -79,9 +78,18 @@ call plug#end()
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
 
+" ------------------------------------------------------
+" ------------------ Plugin settings ------------------
+" ------------------------------------------------------
 " vim-commentary settings
 autocmd FileType *.ino setlocal commentstring=//\ %s
 
+" ALE config
+let g:ale_completion_enabled = 0 "Disable auto code complete, I have other plugins for that
+
+" ------------------------------------------------------
+" -------------- My Preference Settings ----------------
+" ------------------------------------------------------
 " My settings
 set nocompatible
 set showmatch
@@ -108,12 +116,6 @@ autocmd Filetype ino,c,cpp set cindent
 " Make vim treat arduino file types as cpp types
 au BufRead,BufNewFile *.ino set filetype=cpp
 
-" Supertab config
-" let g:SuperTabNoCompleteAfter = ['\.', '>\?::', '->'] "Disable auto code complete, I have other plugins for that
-
-" ALE config
-let g:ale_completion_enabled = 0 "Disable auto code complete, I have other plugins for that
-
 " My commands
 :command W w
 :command Q q
@@ -131,9 +133,9 @@ nnoremap <C-S-l> $
 "inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
 "inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
 
-" COC QOL remaps
 " ------------------------------------------------------
-
+" -------------------- COC Settings --------------------
+" ------------------------------------------------------
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -141,6 +143,30 @@ nnoremap <C-S-l> $
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ CheckBackspace() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" coc-snippets
+" Use <C-l> for trigger snippet expand.
+"imap <C-n> <Plug>(coc-snippets-expand)
+" Use <C-j> for select text for visual placeholder of snippet.
+"vmap <C-m> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+"let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+"let g:coc_snippet_prev = '<c-k>'
+" Use <C-j> for both expand and jump (make expand higher priority.)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
+" Use <leader>x for convert visual selected code to snippet
+"xmap <leader>x  <Plug>(coc-convert-snippet)
 

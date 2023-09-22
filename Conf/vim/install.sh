@@ -1,4 +1,24 @@
 #!/bin/bash
+########################################################################################
+## Script Name	: install.sh
+## Author      	: Schecter Wolf
+## Email       	: schecterwolfe@gmail.com
+## License 		: Copyright (C) 2023  Schecter Wolf
+##
+## 				  This program is free software: you can redistribute it and/or modify
+## 				  it under the terms of the GNU General Public License as published by
+## 				  the Free Software Foundation, either version 3 of the License, or
+## 				  (at your option) any later version.
+##
+## 				  This program is distributed in the hope that it will be useful,
+## 				  but WITHOUT ANY WARRANTY; without even the implied warranty of
+## 				  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## 				  GNU General Public License for more details.
+##
+## 				  You should have received a copy of the GNU General Public License
+## 				  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## Description	: Installs vim, vim plugins, and plugin support files
+########################################################################################
 
 print_usage() {
     cat << EOF >&2
@@ -37,7 +57,7 @@ eval set -- "$POSITIONAL_PARAMS"
 
 # Install conf files to default system location
 echo "Installing VIM source config"
-/usr/bin/cp $VIM_CONF_DIR/vimrc $HOME/.vimrc
+cp -p $VIM_CONF_DIR/vimrc $HOME/.vimrc
 
 # Install vim-plug
 if [ ! -d $VIM_HOME/autoload/plug.vim ]; then
@@ -46,21 +66,22 @@ if [ ! -d $VIM_HOME/autoload/plug.vim ]; then
 fi
 
 # vim-plug to install plugins
-echo "Installing VIM ${COLOR_GREEN}plugins${COLOR_NONE}..."
-/usr/bin/vim +PlugInstall +qall
+echo -e "Installing VIM ${COLOR_GREEN}plugins${COLOR_NONE}..."
+vim +PlugInstall +qall
 
 # coc install extensions
 echo -e "Installing VIM ${COLOR_GREEN}coc extensions${COLOR_NONE}..."
 ARY_COC_EXT=(
-    "coc-json"
-    "coc-html"
-    "coc-spell-checker"
-    "coc-markdownlint"
-    "coc-sh"
-    "coc-java"
-    "coc-docker"
-    "coc-pyright"
     "coc-clangd"
+    "coc-docker"
+    "coc-html"
+    "coc-java"
+    "coc-json"
+    "coc-markdownlint"
+    "coc-pyright"
+    "coc-sh"
+    "coc-snippets"
+    "coc-spell-checker"
 )
 for _ext in ${ARY_COC_EXT[@]}; do
     echo -e "\t${COLOR_BLUE}$_ext${COLOR_NONE}"
@@ -68,5 +89,16 @@ for _ext in ${ARY_COC_EXT[@]}; do
 done
 echo "Finished!"
 
+# TODO Can't seem to get this to work unless I manually open a cpp file with vim and
+#      issue the CocCommand
+# Installing coc-clangd clang path
+#echo -e "Installing ${COLOR_GREEN}clangd${COLOR_NONE}..."
+#vim -c ":sleep 5|CocCommand clangd.install" file.cpp &> /dev/null
+#echo "Finished!"
+
 # coc settings
-/usr/bin/cp $VIM_CONF_DIR/coc-settings.json $VIM_HOME
+cp $VIM_CONF_DIR/coc-settings.json $VIM_HOME
+
+# Install my custom ultisnips
+cp -r $VIM_CONF_DIR/ultisnips $HOME/.config/coc
+
