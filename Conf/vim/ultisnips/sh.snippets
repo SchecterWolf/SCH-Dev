@@ -1,0 +1,78 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+priority 1
+
+snippet #! "#!/usr/bin/bash"
+#!/usr/bin/bash
+endsnippet
+
+snippet ### "File header Comment"
+########################################################################################
+## Script Name	: `!v expand('%:t')`
+## Author      	: `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## Email       	: `grep email ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## Description	:
+########################################################################################
+endsnippet
+
+snippet ###gpl "File header Comment W/ GPL3"
+########################################################################################
+## Script Name	: `!v expand('%:t')`
+## Author      	: `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## Email       	: `grep email ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## License 		: Copyright (C) `date +%Y`  `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+##
+## 				  This program is free software: you can redistribute it and/or modify
+## 				  it under the terms of the GNU General Public License as published by
+## 				  the Free Software Foundation, either version 3 of the License, or
+## 				  (at your option) any later version.
+##
+## 				  This program is distributed in the hope that it will be useful,
+## 				  but WITHOUT ANY WARRANTY; without even the implied warranty of
+## 				  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## 				  GNU General Public License for more details.
+##
+## 				  You should have received a copy of the GNU General Public License
+## 				  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## Description	:
+########################################################################################
+endsnippet
+
+snippet ###cc "File header Comment W/ CC"
+########################################################################################
+## Script Name	: `!v expand('%:t')`
+## Author      	: `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## Email       	: `grep email ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## License 		: Copyright (C) `date +%Y` by `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## 				  This program is licensed under a
+## 				  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+## 				  Public License
+##
+## 				  You should have received a copy of the license along with this
+## 				  work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+## Description	:
+########################################################################################
+endsnippet

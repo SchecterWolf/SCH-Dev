@@ -1,4 +1,5 @@
 {
     "inlayHint.enable": false,
-    "suggest.noselect": true
+    "suggest.noselect": true,
+    "snippets.userSnippetsDirector": "~/.vim/plugged/vim-snippets/Ultisnips"
 }
