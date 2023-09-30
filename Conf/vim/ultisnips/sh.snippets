@@ -76,3 +76,34 @@ snippet ###cc "File header Comment W/ CC"
 ## Description	:
 ########################################################################################
 endsnippet
+
+snippet intro "Schecter's typical sh preamble"
+print_usage() {
+	cat << EOF >&2
+Description:
+
+Usage: $(basename "\$0") [options]
+
+options:
+	-h 			Show help
+
+EOF
+exit 1
+}
+
+# Global VARS
+
+POSITIONAL_PARAMS=""
+while (( "$#" )); do
+	case "\$1" in
+		--help|-*|--*=) # unsupported flags
+			print_usage
+			;;
+		*) # preserve positional arguments
+			POSITIONAL_PARAMS="$POSITIONAL_PARAMS \$1"
+			shift
+			;;
+	esac
+done
+eval set -- "$POSITIONAL_PARAMS"
+endsnippet

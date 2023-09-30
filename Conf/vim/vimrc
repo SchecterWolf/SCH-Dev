@@ -87,6 +87,9 @@ autocmd FileType *.ino setlocal commentstring=//\ %s
 " ALE config
 let g:ale_completion_enabled = 0 "Disable auto code complete, I have other plugins for that
 
+" ctrlp config
+let g:ctrlp_working_path_mode = ''
+
 " ------------------------------------------------------
 " -------------- My Preference Settings ----------------
 " ------------------------------------------------------

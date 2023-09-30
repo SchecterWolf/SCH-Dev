@@ -114,6 +114,11 @@ if [ -f ~/.bashrc_aliases ]; then
     . ~/.bashrc_aliases
 fi
 
+# Active project aliases
+if [ -e ~/.bashrc_project ]; then
+    . ~/.bashrc_project
+fi
+
 # Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

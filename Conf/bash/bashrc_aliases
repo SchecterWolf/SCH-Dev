@@ -17,5 +17,14 @@ rg() { /usr/bin/rgrep -nI --color=always --exclude=\*.md --exclude=tags --exclud
 gr() { /usr/bin/git rebase -i HEAD~$1; } # If squashing with only 2 commits in repo: git rebase -i --root
 gpo() { /usr/bin/git fetch origin && /usr/bin/git pull origin $(/usr/bin/git branch --show-current); }
 guo() { /usr/bin/git push origin $(/usr/bin/git branch --show-current); }
-gl() { /usr/bin/git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | cut -c-$(($(tput cols) + 20)); }
+spell () { echo "$1" | /usr/bin/aspell -a; }
+
+
+gl() {
+    local _n = 20
+    if [ ! -z "$1" ]; then
+        _n = $1
+    fi
+    /usr/bin/git log -n $_n --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | cut -c-$(($(tput cols) + 20));
+}
 
