@@ -21,9 +21,9 @@ spell () { echo "$1" | /usr/bin/aspell -a; }
 
 
 gl() {
-    local _n = 20
+    local _n=20
     if [ ! -z "$1" ]; then
-        _n = $1
+        _n=$1
     fi
     /usr/bin/git log -n $_n --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | cut -c-$(($(tput cols) + 20));
 }
