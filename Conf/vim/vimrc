@@ -136,6 +136,13 @@ nnoremap <C-S-l> $
 "inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
 "inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
 
+" Project custom vimrc settings (if applicable)
+try
+    source ~/.vimrc_project
+catch
+    " ignore
+endtry
+
 " ------------------------------------------------------
 " -------------------- COC Settings --------------------
 " ------------------------------------------------------
