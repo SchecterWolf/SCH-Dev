@@ -1,3 +1,7 @@
 [user]
 	email = schecterwolfe@gmail.com
 	name = Schecter Wolf
+    human = John Torres
+    signingkey = __SSH_PUBLIC__
+[gpg]
+    format = ssh

@@ -38,6 +38,11 @@ fi
 # Install git config
 if [ ! -f "$HOME/.gitconfig" ]; then
     echo "Installing git config"
+
+    # Configure ssh key for signing
+    local _ssh_public=$(echo "$HOME/.ssh/id_ed25519.pub" | sed 's/\//\\\//g')
+    sed -i "s/__SSH_PUBLIC__/$_ssh_public/g" $(dirname $0)/git/.gitconfig
+
     /usr/bin/ln "$(dirname $0)/git/.gitconfig" "$HOME/.gitconfig"
 fi
 

@@ -56,6 +56,7 @@ ARY_SNAP_BINS=(
 
 # PPA repos (assumed trusted)
 sudo add-apt-repository ppa:jonathonf/vim
+sudo apt-add-repository ppa:git-core/ppa
 
 # apt installs
 $SUDO apt update
@@ -65,6 +66,9 @@ $SUDO apt autoremove
 
 # snap installs
 $SUDO snap install "${ARY_SNAP_BINS[@]}"
+
+# Python deps
+pip install virtualenv
 
 # Install nodejs
 if [ "$(command -v node)" == "" ]; then

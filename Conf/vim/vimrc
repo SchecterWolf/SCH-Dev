@@ -86,9 +86,13 @@ autocmd FileType *.ino setlocal commentstring=//\ %s
 
 " ALE config
 let g:ale_completion_enabled = 0 "Disable auto code complete, I have other plugins for that
+let g:ale_linters_ignore = {'cpp': ['cc', 'clangcheck', 'clangd', 'clangtidy']} "I already have coc-clangd running
 
 " ctrlp config
 let g:ctrlp_working_path_mode = ''
+
+" Doxygen Toolkit
+let g:DoxygenToolkit_briefTag_pre = ''
 
 " ------------------------------------------------------
 " -------------- My Preference Settings ----------------
@@ -136,9 +140,14 @@ nnoremap <C-S-l> $
 "inoremap <expr> j pumvisible() ? "\<C-N>" : "j"
 "inoremap <expr> k pumvisible() ? "\<C-P>" : "k"
 
+source $HOME/.vimrc_project
+
 " ------------------------------------------------------
 " -------------------- COC Settings --------------------
 " ------------------------------------------------------
+" Recolors
+hi CocFloating ctermbg=black
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -172,4 +181,8 @@ endfunction
 "imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 "xmap <leader>x  <Plug>(coc-convert-snippet)
+
+" coc-spell-checker
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
 
