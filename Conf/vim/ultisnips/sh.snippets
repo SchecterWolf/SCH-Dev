@@ -31,49 +31,49 @@ endsnippet
 
 snippet ### "File header Comment"
 ########################################################################################
-## Script Name	: `!v expand('%:t')`
-## Author      	: `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## Email       	: `grep email ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## Description	:
+## Script Name  : `!v expand('%:t')`
+## Author       : `git config user.name`
+## Email        : `git config user.email`
+## Description  :
 ########################################################################################
 endsnippet
 
 snippet ###gpl "File header Comment W/ GPL3"
 ########################################################################################
-## Script Name	: `!v expand('%:t')`
-## Author      	: `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## Email       	: `grep email ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## License 		: Copyright (C) `date +%Y`  `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
+## Script Name  : `!v expand('%:t')`
+## Author       : `git config user.name`
+## Email        : `git config user.email`
+## License      : Copyright (C) `date +%Y` by `git config user.human || git config user.name`
 ##
-## 				  This program is free software: you can redistribute it and/or modify
-## 				  it under the terms of the GNU General Public License as published by
-## 				  the Free Software Foundation, either version 3 of the License, or
-## 				  (at your option) any later version.
+##                This program is free software: you can redistribute it and/or modify
+##                it under the terms of the GNU General Public License as published by
+##                the Free Software Foundation, either version 3 of the License, or
+##                (at your option) any later version.
 ##
-## 				  This program is distributed in the hope that it will be useful,
-## 				  but WITHOUT ANY WARRANTY; without even the implied warranty of
-## 				  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-## 				  GNU General Public License for more details.
+##                This program is distributed in the hope that it will be useful,
+##                but WITHOUT ANY WARRANTY; without even the implied warranty of
+##                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+##                GNU General Public License for more details.
 ##
-## 				  You should have received a copy of the GNU General Public License
-## 				  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-## Description	:
+##                You should have received a copy of the GNU General Public License
+##                along with this program.  If not, see <http://www.gnu.org/licenses/>.
+## Description  :
 ########################################################################################
 endsnippet
 
 snippet ###cc "File header Comment W/ CC"
 ########################################################################################
-## Script Name	: `!v expand('%:t')`
-## Author      	: `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## Email       	: `grep email ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## License 		: Copyright (C) `date +%Y` by `grep name ~/.gitconfig | awk -F '=' '{print $2}' | awk '{$1=$1};1'`
-## 				  This program is licensed under a
-## 				  Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
-## 				  Public License
+## Script Name  : `!v expand('%:t')`
+## Author       : `git config user.name`
+## Email        : `git config user.email`
+## License      : Copyright (C) `date +%Y` by `git config user.human || git config user.name`
+##                This program is licensed under a
+##                Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+##                Public License
 ##
-## 				  You should have received a copy of the license along with this
-## 				  work.  If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
-## Description	:
+##                You should have received a copy of the license along with this
+##                work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>.
+## Description  :
 ########################################################################################
 endsnippet
 
